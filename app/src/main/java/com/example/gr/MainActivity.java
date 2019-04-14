@@ -8,11 +8,6 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    // Used to load the 'native-lib' library on application startup.
-    static {
-        System.loadLibrary("native-lib");
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,12 +19,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button mBtnDemoService = findViewById(R.id.button_demo_ux);
         mBtnDemoService.setOnClickListener(this);
     }
-
-    /**
-     * A native method that is implemented by the 'native-lib' native library,
-     * which is packaged with this application.
-     */
-    public native String stringFromJNI();
 
     @Override
     public void onClick(View v) {
