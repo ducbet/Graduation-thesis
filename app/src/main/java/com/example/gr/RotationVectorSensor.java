@@ -6,6 +6,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.util.Log;
+import android.view.View;
 
 import static android.content.Context.SENSOR_SERVICE;
 
@@ -18,18 +19,20 @@ public class RotationVectorSensor implements SensorEventListener {
     private final float[] mOrientations = new float[3];
     private long mLastSamplingMs = 0;
 
+    private ChatHead mChatHead;
 
     public RotationVectorSensor(Context context) {
         // Get an instance of the SensorManager
         mSensorManager = (SensorManager) context.getSystemService(SENSOR_SERVICE);
         // find the rotation-vector sensor
-        mRotationVectorSensor = mSensorManager.getDefaultSensor(
-                Sensor.TYPE_ROTATION_VECTOR);
+        mRotationVectorSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
         // initialize the rotation matrix to identity
         mRotationMatrix[0] = 1;
         mRotationMatrix[4] = 1;
         mRotationMatrix[8] = 1;
         mRotationMatrix[12] = 1;
+
+        mChatHead = ((ForegroundService) context).getChatHead();
     }
 
     @Override
@@ -52,6 +55,12 @@ public class RotationVectorSensor implements SensorEventListener {
                     "\norientations[2]: " + Math.round(mOrientations[2] * 100.0) / 100.0 +
                     "\nsampling frequency: " + (System.currentTimeMillis() - mLastSamplingMs);
             Log.d(TAG, "onSensorChanged: " + strData);
+
+            if (-65 < mOrientations[1] && mOrientations[1] < -10)
+                mChatHead.show();
+            else
+                mChatHead.hide();
+
             mLastSamplingMs = System.currentTimeMillis();
         }
     }
@@ -62,13 +71,10 @@ public class RotationVectorSensor implements SensorEventListener {
     }
 
     public void start() {
-        // enable our sensor when the activity is resumed, ask for
-        // 10 ms updates.
-        mSensorManager.registerListener(this, mRotationVectorSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        mSensorManager.registerListener(this, mRotationVectorSensor, SensorManager.SENSOR_DELAY_NORMAL); // ~180ms
     }
 
     public void stop() {
-        // make sure to turn our sensor off when the activity is paused
         mSensorManager.unregisterListener(this);
     }
 }

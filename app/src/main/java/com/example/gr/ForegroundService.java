@@ -21,10 +21,14 @@ public class ForegroundService extends Service {
     @Override
     public void onCreate() {
         Toast.makeText(this, "Service Created", Toast.LENGTH_LONG).show();
+        mChatHead = new ChatHead(this);
+
         mRotationVectorSensor = new RotationVectorSensor(this);
         mRotationVectorSensor.start();
+    }
 
-        mChatHead = new ChatHead(this);
+    ChatHead getChatHead() {
+        return mChatHead;
     }
 
     @Override
