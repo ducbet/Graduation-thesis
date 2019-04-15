@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -17,14 +18,16 @@ import java.util.Random;
 import static android.content.Context.WINDOW_SERVICE;
 
 public class ChatHead extends View implements View.OnTouchListener {
-
+    private static final String TAG = "mytag-ChatHead";
     private Context mContext;
 
     private WindowManager mWindowManager;
     private WindowManager.LayoutParams mChatHeadParams;
-    private View mChatHeadView;
-    private ImageView mChatHeadImage;
+    private View mChatHeadView, mOverlayView;
+    private ImageView mChatHeadImage, mCloseButton;
     private LinearLayout mUntouchableOverlap;
+
+    private boolean mIsOverlapping = false;
 
     // View.OnTouchListener
     private int lastAction;
@@ -46,7 +49,7 @@ public class ChatHead extends View implements View.OnTouchListener {
     }
 
     private void createOverlay() {//Inflate the chat head layout we created
-        View mOverlayView = LayoutInflater.from(mContext).inflate(R.layout.layout_overlay, null);
+        mOverlayView = LayoutInflater.from(mContext).inflate(R.layout.layout_overlay, null);
         //Add the view to the window.
         WindowManager.LayoutParams mOverlayParams = new WindowManager.LayoutParams(
                 WindowManager.LayoutParams.MATCH_PARENT,
@@ -85,7 +88,7 @@ public class ChatHead extends View implements View.OnTouchListener {
         mWindowManager.addView(mChatHeadView, mChatHeadParams);
 
         //Set the close button.
-        ImageView mCloseButton = mChatHeadView.findViewById(R.id.image_view_close_chat_head);
+        mCloseButton = mChatHeadView.findViewById(R.id.image_view_close_chat_head);
         mCloseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,13 +104,8 @@ public class ChatHead extends View implements View.OnTouchListener {
     @Override
     public boolean performClick() {
         super.performClick();
-        if (mUntouchableOverlap.getVisibility() == View.VISIBLE) {
-            mChatHeadImage.setImageResource(R.drawable.ic_android_circle);
-            mUntouchableOverlap.setVisibility(View.GONE);
-        } else {
-            mChatHeadImage.setImageResource(R.drawable.ic_android_circle_red);
-            mUntouchableOverlap.setVisibility(View.VISIBLE);
-        }
+        if (mIsOverlapping) goGreen();
+        else goRed();
         return true;
     }
 
@@ -146,5 +144,33 @@ public class ChatHead extends View implements View.OnTouchListener {
 
     public void remove() {
         if (mChatHeadView != null) mWindowManager.removeView(mChatHeadView);
+        if (mOverlayView != null) mWindowManager.removeView(mOverlayView);
+    }
+
+    private void goGreen() {
+        mIsOverlapping = false;
+        mChatHeadImage.setImageResource(R.drawable.ic_android_circle);
+        mUntouchableOverlap.setVisibility(View.GONE);
+    }
+
+    private void goRed() {
+        mIsOverlapping = true;
+        mChatHeadImage.setImageResource(R.drawable.ic_android_circle_red);
+        mUntouchableOverlap.setVisibility(View.VISIBLE);
+    }
+
+    public void show() {
+        if (mChatHeadView.getVisibility() == View.GONE) {
+            mChatHeadView.setVisibility(View.VISIBLE);
+            if (mIsOverlapping) goRed();
+            else goGreen();
+        }
+    }
+
+    public void hide() {
+        if (mChatHeadView.getVisibility() == View.VISIBLE) {
+            mChatHeadView.setVisibility(View.GONE);
+            mOverlayView.setVisibility(View.GONE);
+        }
     }
 }
