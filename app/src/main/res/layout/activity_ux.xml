@@ -7,8 +7,12 @@
     tools:context=".UxActivity">
 
     <TextView
+        android:id="@+id/text_view_rotv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="USER EXPERIENCE" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:gravity="start"
+        android:textColor="@android:color/black"
+        android:textSize="25sp" />
 
 </android.support.constraint.ConstraintLayout>
