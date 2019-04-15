@@ -16,12 +16,15 @@ public class ForegroundService extends Service {
     private static final int ONGOING_NOTIFICATION_ID = 1566;
 
     private RotationVectorSensor mRotationVectorSensor;
+    private ChatHead mChatHead;
 
     @Override
     public void onCreate() {
         Toast.makeText(this, "Service Created", Toast.LENGTH_LONG).show();
         mRotationVectorSensor = new RotationVectorSensor(this);
         mRotationVectorSensor.start();
+
+        mChatHead = new ChatHead(this);
     }
 
     @Override
@@ -33,7 +36,7 @@ public class ForegroundService extends Service {
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setContentTitle("GR APP")
                 .setContentText("detecting crosswalk")
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setSmallIcon(R.drawable.ic_zebra)
                 .setContentIntent(pendingIntent)
                 .build();
 
@@ -46,6 +49,7 @@ public class ForegroundService extends Service {
     public void onDestroy() {
         Toast.makeText(this, "Service Stopped", Toast.LENGTH_LONG).show();
         mRotationVectorSensor.stop();
+        mChatHead.remove();
     }
 
     @Nullable
