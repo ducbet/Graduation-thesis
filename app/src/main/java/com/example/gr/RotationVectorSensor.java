@@ -1,28 +1,25 @@
 package com.example.gr;
 
-import android.app.Activity;
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.widget.TextView;
+import android.util.Log;
 
 import static android.content.Context.SENSOR_SERVICE;
 
 public class RotationVectorSensor implements SensorEventListener {
+    private static final String TAG = "mytag-RotvSensor";
 
-    private Context mContext;
     private SensorManager mSensorManager;
     private Sensor mRotationVectorSensor;
     private final float[] mRotationMatrix = new float[16];
     private final float[] mOrientations = new float[3];
     private long mLastSamplingMs = 0;
 
-    private TextView mTxtDataRotv;
 
     public RotationVectorSensor(Context context) {
-        mContext = context;
         // Get an instance of the SensorManager
         mSensorManager = (SensorManager) context.getSystemService(SENSOR_SERVICE);
         // find the rotation-vector sensor
@@ -33,8 +30,6 @@ public class RotationVectorSensor implements SensorEventListener {
         mRotationMatrix[4] = 1;
         mRotationMatrix[8] = 1;
         mRotationMatrix[12] = 1;
-
-        mTxtDataRotv = ((Activity) mContext).findViewById(R.id.text_view_rotv);
     }
 
     @Override
@@ -52,12 +47,12 @@ public class RotationVectorSensor implements SensorEventListener {
                 mOrientations[i] = (float) (Math.toDegrees(mOrientations[i]));
             }
 
-            String strData = "orientations[0]: " + Math.round(mOrientations[0] * 100.0) / 100.0 +
+            String strData = "\norientations[0]: " + Math.round(mOrientations[0] * 100.0) / 100.0 +
                     "\norientations[1]: " + Math.round(mOrientations[1] * 100.0) / 100.0 +
                     "\norientations[2]: " + Math.round(mOrientations[2] * 100.0) / 100.0 +
                     "\nsampling frequency: " + (System.currentTimeMillis() - mLastSamplingMs);
+            Log.d(TAG, "onSensorChanged: " + strData);
             mLastSamplingMs = System.currentTimeMillis();
-            mTxtDataRotv.setText(strData);
         }
     }
 

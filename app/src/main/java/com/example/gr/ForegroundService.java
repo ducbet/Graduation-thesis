@@ -12,12 +12,16 @@ import android.widget.Toast;
 import static com.example.gr.App.CHANNEL_ID;
 
 public class ForegroundService extends Service {
-
+    private static final String TAG = "mytag-ForegroundService";
     private static final int ONGOING_NOTIFICATION_ID = 1566;
+
+    private RotationVectorSensor mRotationVectorSensor;
 
     @Override
     public void onCreate() {
         Toast.makeText(this, "Service Created", Toast.LENGTH_LONG).show();
+        mRotationVectorSensor = new RotationVectorSensor(this);
+        mRotationVectorSensor.start();
     }
 
     @Override
@@ -41,6 +45,7 @@ public class ForegroundService extends Service {
     @Override
     public void onDestroy() {
         Toast.makeText(this, "Service Stopped", Toast.LENGTH_LONG).show();
+        mRotationVectorSensor.stop();
     }
 
     @Nullable

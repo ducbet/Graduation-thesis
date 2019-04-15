@@ -6,14 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 public class UxActivity extends AppCompatActivity {
-    private RotationVectorSensor mRotationVectorSensor;
+    private static final String TAG = "mytag-UxActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ux);
-
-        mRotationVectorSensor = new RotationVectorSensor(this);
     }
 
     public void startService(View v) {
@@ -27,12 +25,10 @@ public class UxActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        mRotationVectorSensor.start();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        mRotationVectorSensor.stop();
     }
 }
