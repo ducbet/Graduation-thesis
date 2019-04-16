@@ -47,7 +47,7 @@ public class ForegroundService extends Service {
         Toast.makeText(this, "Service onStartCommand", Toast.LENGTH_LONG).show();
         Log.d(TAG, "onStartCommand: ");
         String reasonChanged = intent.getStringExtra("reason_changed");
-        boolean newState = intent.getBooleanExtra(reasonChanged, true);
+        boolean newState = intent.getBooleanExtra("new_state", true);
 
         if (newState) onResume();
         else onPause();
