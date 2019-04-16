@@ -36,7 +36,6 @@ public class UxActivity extends AppCompatActivity {
                 Toast.makeText(this,
                         "Draw over other app permission not available. Closing the application",
                         Toast.LENGTH_SHORT).show();
-
                 finish();
             }
         } else {

@@ -54,7 +54,7 @@ public class RotationVectorSensor implements SensorEventListener {
                     "\norientations[1]: " + Math.round(mOrientations[1] * 100.0) / 100.0 +
                     "\norientations[2]: " + Math.round(mOrientations[2] * 100.0) / 100.0 +
                     "\nsampling frequency: " + (System.currentTimeMillis() - mLastSamplingMs);
-            Log.d(TAG, "onSensorChanged: " + strData);
+//            Log.d(TAG, "onSensorChanged: " + strData);
 
             if (-65 < mOrientations[1] && mOrientations[1] < -10)
                 mChatHead.show();
@@ -71,6 +71,7 @@ public class RotationVectorSensor implements SensorEventListener {
     }
 
     public void start() {
+        Log.d(TAG, "start: ");
         mSensorManager.registerListener(this, mRotationVectorSensor, SensorManager.SENSOR_DELAY_NORMAL); // ~180ms
     }
 
