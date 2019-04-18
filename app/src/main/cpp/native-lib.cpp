@@ -21,7 +21,30 @@ int MAX_SLOPE = 10000;
 int d = 5;
 int powD = d*d;
 
+int image_height = 300;
+float roi_scale = 0.8;
+
 cv::Mat* openningImage;
+
+void preprocess(){
+    cv::Mat src = *openningImage;
+    LOGD("old size: width: %d, height: %d\n", src.size().width, src.size().height);
+
+    if (src.size().width > src.size().height) cv::rotate(src, src, cv::ROTATE_90_CLOCKWISE);
+
+    if (image_height == -1) image_height = src.size().height; // giu nguyen kich thuoc
+    double ratio = (double) src.size().width / src.size().height;
+    cv::Size target_size = cv::Size((int)(image_height * ratio), image_height);
+    resize(src, src, target_size);
+
+    // roi
+    cv::Rect ROI = cv::Rect(0, 0, src.size().width, src.size().height * roi_scale);
+    src = src(ROI).clone();
+//    src = src(ROI);
+    openningImage = &src;
+//    if (kernel_size != 0) GaussianBlur( openningImage, openningImage, Size( kernel_size, kernel_size ), 0, 0 );
+    LOGD("new size: width: %d, height: %d\n", (*openningImage).size().width, (*openningImage).size().height);
+}
 
 extern "C"
 JNIEXPORT jboolean JNICALL
@@ -30,6 +53,7 @@ Java_com_example_gr_ImageProcessingActivity_detectCrosswalk(JNIEnv *env, jobject
     double start, duration_ms;
     start = double(cv::getTickCount());
     openningImage  = (cv::Mat*)addrGray;
+    preprocess();
     vector<shared_ptr<DtLine>> detectedLines = detectbyEDLines("asdsd");
     if(detectedLines.size() < 3) return 0;
     detectedLines = postProcessDtLines(detectedLines);
