@@ -94,6 +94,7 @@ public class ImageProcessingActivity extends AppCompatActivity implements Camera
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
         mGray = inputFrame.gray();
         boolean result = detectCrosswalk(mGray.getNativeObjAddr());
+        Log.d(TAG, "onCameraFrame: " + mGray.width() + ", height: " + mGray.height());
         return mGray;
     }
 
