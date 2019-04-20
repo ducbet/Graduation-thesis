@@ -19,11 +19,11 @@ void Point2D::print() {
 }
 
 int Point2D::getX() {
-    return this->coor.x;
+    return (int)(this->coor.x);
 }
 
 int Point2D::getY() {
-    return this->coor.y;
+    return (int)(this->coor.y);
 }
 
 float Point2D::distToPoint(shared_ptr<Point2D> point) {
