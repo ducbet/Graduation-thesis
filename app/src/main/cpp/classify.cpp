@@ -183,6 +183,23 @@ vector<shared_ptr<Rib>> getCandicateRibs(vector<shared_ptr<Rib>> ribs) {
     return candicateRibs;
 }
 
+vector< vector<shared_ptr<Rib>> > makeTripleRibs(vector<shared_ptr<Rib>> ribs) {
+    vector<bool> v(ribs.size());
+    vector< vector<shared_ptr<Rib>> > splitted;
+
+    fill(v.begin(), v.begin() + 3, true);
+    do {
+        vector<shared_ptr<Rib>> subRibs;
+        for (int i = 0; i < ribs.size(); ++i) {
+            if (v[i]) {
+                subRibs.push_back(ribs.at(i));
+            }
+        }
+        splitted.push_back(subRibs);
+    } while (prev_permutation(v.begin(), v.end()));
+    return splitted;
+}
+
 bool isCrosswalk(shared_ptr<Backbone> backbone) {
     int threshold, score;
     vector<shared_ptr<Rib>> candicateRibs;
@@ -209,14 +226,32 @@ bool isCrosswalk(shared_ptr<Backbone> backbone) {
         }
         if (candicateRibs.size() < 3) continue;
 
-        candicateRibs = getCandicateRibs(candicateRibs);
-        if (candicateRibs.size() < 3) continue;
+        if (candicateRibs.size() > 3)
+        {
+            vector<vector<shared_ptr<Rib>>> tripleRibs = makeTripleRibs(candicateRibs);
+            for (vector<shared_ptr<Rib>> tripleRib : tripleRibs)
+            {
+                tripleRib = getCandicateRibs(tripleRib);
+                if (tripleRib.size() < 3) continue;
 
-        score = giveScore(candicateRibs);
-        if (candicateRibs.size() <= 6) threshold = score_threshold[candicateRibs.size()];
-        else threshold = score_threshold[6];
+                score = giveScore(tripleRib);
+                if (score >= score_threshold[3]) {
+                    globalCandicateRibs = tripleRib;
+                    return true;
+                }
+            }
+        }
+        else if (candicateRibs.size() == 3)
+        {
+            candicateRibs = getCandicateRibs(candicateRibs);
+            if (candicateRibs.size() < 3) continue;
 
-        if (score >= threshold) return true;
+            score = giveScore(candicateRibs);
+            if (score >= score_threshold[3]) {
+                globalCandicateRibs = candicateRibs;
+                return true;
+            }
+        }
     }
     return false;
 }

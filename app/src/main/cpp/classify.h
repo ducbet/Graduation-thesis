@@ -7,6 +7,7 @@ extern bool debugging;
 extern float diffAngleInGroup;
 extern int diffInColorSpace;
 extern vector<int> score_threshold;
+extern vector<shared_ptr<Rib>> globalCandicateRibs;
 
 bool classify(vector<shared_ptr<DtLine>>);
 shared_ptr<Point3D> updateColorCentroid(vector<shared_ptr<Rib>>);
