@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button mBtnDemoImageProcessing = findViewById(R.id.button_demo_image_processing);
+        Button mBtnDemoImageProcessing = findViewById(R.id.button_demo_camera);
         mBtnDemoImageProcessing.setOnClickListener(this);
 
         Button mBtnDemoService = findViewById(R.id.button_demo_ux);
@@ -23,11 +23,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.button_demo_image_processing:
-                startActivity(new Intent(MainActivity.this, ImageProcessingActivity.class));
+            case R.id.button_demo_camera:
+                startActivity(new Intent(MainActivity.this, DemoCameraActivity.class));
                 break;
             case R.id.button_demo_ux:
                 startActivity(new Intent(MainActivity.this, UxActivity.class));
+                break;
+            case R.id.button_demo_video:
+                startActivity(new Intent(MainActivity.this, DemoVideoActivity.class));
                 break;
         }
     }

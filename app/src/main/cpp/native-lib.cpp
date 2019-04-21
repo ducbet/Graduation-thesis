@@ -27,6 +27,7 @@ float roi_scale = 0.8;
 cv::Mat *openningImage;
 cv::Mat src;
 
+vector<shared_ptr<Rib>> globalCandicateRibs;
 double resizeRatio;
 int originWidth;
 
@@ -49,10 +50,7 @@ void preprocess() {
 //    if (kernel_size != 0) GaussianBlur( openningImage, openningImage, Size( kernel_size, kernel_size ), 0, 0 );
 }
 
-extern "C"
-JNIEXPORT jintArray JNICALL
-Java_com_example_gr_ImageProcessingActivity_detectCrosswalk(JNIEnv *env, jobject instance,
-                                                            jlong addrGray) {
+jintArray detectCrosswalk(JNIEnv *env, jobject instance, jlong addrGray) {
     double start, duration_ms;
     int firstLineIndex = 3;
     start = double(cv::getTickCount());
@@ -64,8 +62,8 @@ Java_com_example_gr_ImageProcessingActivity_detectCrosswalk(JNIEnv *env, jobject
     vector<shared_ptr<DtLine>> detectedLines = detectbyEDLines("asdsd");
     LOGD("detectedLines.size(): %lu\n", detectedLines.size());
     int resultSize = (int) (detectedLines.size() * 4 + firstLineIndex);
-    jintArray result = env->NewIntArray(resultSize);
-    jint *fill = new jint[resultSize];
+    jintArray result = env->NewIntArray(resultSize + 3 * 4);// chua cho cho 3 valid line
+    jint *fill = new jint[resultSize + 3 * 4];
     // 0: resultSize
     // 1: first line index
     // 2: detect result
@@ -104,10 +102,36 @@ Java_com_example_gr_ImageProcessingActivity_detectCrosswalk(JNIEnv *env, jobject
     }
     duration_ms = (double(cv::getTickCount()) - start) * 1000 / cv::getTickFrequency();
     LOGD("duration_ms: %f", duration_ms);
-    bool b = classify(detectedLines);
-    fill[2] = b;
+    bool detectResult = classify(detectedLines);
+    fill[2] = detectResult;
+    if (detectResult) {
+        i = resultSize; // first valid line index == resultSize (old)
+        resultSize += 3 * 4;
+        fill[0] = resultSize;// 3 line valid * 4 point per line
+        for (const auto &dtLine : globalCandicateRibs) {
+            fill[i] = (int) (dtLine->getA()->getY() * resizeRatio);
+            fill[i + 1] = originWidth - (int) (dtLine->getA()->getX() * resizeRatio);
+            fill[i + 2] = (int) (dtLine->getB()->getY() * resizeRatio);
+            fill[i + 3] = originWidth - (int) (dtLine->getB()->getX() * resizeRatio);
+            i += 4;
+        }
+    }
     env->SetIntArrayRegion(result, 0, resultSize, fill);
     free(fill);
     //chua free result
     return result;
+}
+
+extern "C"
+JNIEXPORT jintArray JNICALL
+Java_com_example_gr_DemoCameraActivity_detectCrosswalk(JNIEnv *env, jobject instance,
+                                                       jlong addrGray) {
+    return detectCrosswalk(env, instance, addrGray);
+}
+
+extern "C"
+JNIEXPORT jintArray JNICALL
+Java_com_example_gr_DemoVideoActivity_detectCrosswalk(JNIEnv *env, jobject instance,
+                                                      jlong addrGray) {
+    return detectCrosswalk(env, instance, addrGray);
 }

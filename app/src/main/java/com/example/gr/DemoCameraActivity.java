@@ -15,7 +15,7 @@ import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
-public class ImageProcessingActivity extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2 {
+public class DemoCameraActivity extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2 {
     private static final String TAG = "MYTAG-ImageProcessAct";
 
     private Mat mGray, mRgba;
@@ -50,7 +50,7 @@ public class ImageProcessingActivity extends AppCompatActivity implements Camera
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-        setContentView(R.layout.activity_image_processing);
+        setContentView(R.layout.activity_demo_camera);
 
         mOpenCvCameraView = findViewById(R.id.java_camera_surface_view);
         mOpenCvCameraView.setVisibility(CameraBridgeViewBase.VISIBLE);

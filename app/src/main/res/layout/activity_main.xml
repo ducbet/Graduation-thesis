@@ -8,16 +8,23 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/button_demo_image_processing"
+        android:id="@+id/button_demo_camera"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:text="demo xử lý ảnh" />
 
     <Button
+        android:id="@+id/button_demo_video"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="demo user experience" />
+
+    <Button
         android:id="@+id/button_demo_ux"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="demo user experience" />
+
 
 </LinearLayout>
