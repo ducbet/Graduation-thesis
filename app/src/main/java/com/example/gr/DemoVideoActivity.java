@@ -2,8 +2,8 @@ package com.example.gr;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Environment;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -29,6 +29,7 @@ public class DemoVideoActivity extends AppCompatActivity implements View.OnClick
     private static final String TAG = "mytag-DemoVideoActivity";
     private ImageView mImgFramePreview;
     private TextView mTxtIntro;
+    private View mViewLeftFrame, mViewRightFrame;
     private ArrayList<File> mFileList = new ArrayList<>();
     private int mCurrentFrame = 0;
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
@@ -40,7 +41,8 @@ public class DemoVideoActivity extends AppCompatActivity implements View.OnClick
 
                     // Load native library after(!) OpenCV initialization
                     System.loadLibrary("native-lib");
-                    if (mCurrentFrame < mFileList.size()) processFrame();
+                    if (mCurrentFrame >= 0 && mCurrentFrame < mFileList.size())
+                        mImgFramePreview.setImageBitmap(processFrame());
                 }
                 break;
                 default: {
@@ -57,9 +59,12 @@ public class DemoVideoActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_demo_video);
 
         mTxtIntro = findViewById(R.id.text_view_intro);
+        mViewLeftFrame = findViewById(R.id.view_left_frame);
+        mViewRightFrame = findViewById(R.id.view_right_frame);
+        mViewLeftFrame.setOnClickListener(this);
+        mViewRightFrame.setOnClickListener(this);
 
         mImgFramePreview = findViewById(R.id.image_view_frame);
-        mImgFramePreview.setOnClickListener(this);
 
         File root = new File(Environment.getExternalStorageDirectory().getPath() + "/gr/");
         getFile(root);
@@ -93,7 +98,7 @@ public class DemoVideoActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
-    void processFrame() {
+    Bitmap processFrame() {
         Mat matRgb = new Mat();
         Mat matGray = new Mat();
         String stringFile = mFileList.get(mCurrentFrame).getName();
@@ -141,19 +146,27 @@ public class DemoVideoActivity extends AppCompatActivity implements View.OnClick
         Bitmap bitmapRbgPortrait = Bitmap.createBitmap(matRgbPortrait.width(), matRgbPortrait.height(), Bitmap.Config.ARGB_8888);
         Utils.matToBitmap(matRgbPortrait, bitmapRbgPortrait);
         matRgbPortrait.release();
-        mImgFramePreview.setImageBitmap(bitmapRbgPortrait);
-        mCurrentFrame++;
+        return bitmapRbgPortrait;
     }
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.image_view_frame && mCurrentFrame < mFileList.size()) {
+        if (v.getId() == R.id.view_left_frame && mCurrentFrame >= 0) {
             Log.d(TAG, "onClick: ");
-            processFrame();
+            mCurrentFrame--;
+            mImgFramePreview.setImageBitmap(processFrame());
+            mTxtIntro.setVisibility(View.GONE);
+
+        } else if (v.getId() == R.id.view_right_frame && mCurrentFrame < mFileList.size()) {
+            mCurrentFrame++;
+            mImgFramePreview.setImageBitmap(processFrame());
             mTxtIntro.setVisibility(View.GONE);
         }
+
     }
 
+
     public native int[] detectCrosswalk(long matAddrGr);
+
 
 }
