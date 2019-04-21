@@ -13,8 +13,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button mBtnDemoImageProcessing = findViewById(R.id.button_demo_camera);
-        mBtnDemoImageProcessing.setOnClickListener(this);
+        Button mBtnDemoCamera = findViewById(R.id.button_demo_camera);
+        mBtnDemoCamera.setOnClickListener(this);
+
+        Button mBtnDemoVideo = findViewById(R.id.button_demo_video);
+        mBtnDemoVideo.setOnClickListener(this);
 
         Button mBtnDemoService = findViewById(R.id.button_demo_ux);
         mBtnDemoService.setOnClickListener(this);
