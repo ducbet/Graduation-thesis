@@ -4,28 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_asphalt"
     android:orientation="vertical"
+    android:paddingTop="100dp"
     tools:context=".MainActivity">
 
     <Button
         android:id="@+id/button_demo_camera"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginBottom="10dp"
+        android:layout_height="100dp"
+        android:layout_margin="30dp"
         android:text="demo by camera" />
 
     <Button
         android:id="@+id/button_demo_video"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_height="100dp"
+        android:layout_margin="30dp"
         android:text="demo by saved video" />
 
     <Button
         android:id="@+id/button_demo_ux"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
+        android:layout_margin="30dp"
+        android:visibility="gone"
         android:text="demo user experience" />
 
 

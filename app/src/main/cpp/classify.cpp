@@ -94,14 +94,14 @@ float calWeightedScale(shared_ptr<Rib> preRib, shared_ptr<Rib> currentRib, share
             scale = currentRib->distToRib(nextRib) / currentRib->distToRib(preRib);
     if (!currentRib->getGroup()) // blue: crosswalk/asphalt
     {
-        if (0.8 <= scale && scale <= 0.95)
-            weightedScale = (scale - 0.8) * 66.7; // max: (0.95 - 0.8) * 66.7 = 10.005
-        else if (0.95 < scale && scale <= 1.1) weightedScale = (1.1 - scale) * 66.7; // 10.005
+        if (0.7 <= scale && scale <= 0.95)
+            weightedScale = (scale - 0.7) * 20; // max: (0.95 - 0.7) * 20 = 5
+        else if (0.95 < scale && scale <= 1.2) weightedScale = (1.2 - scale) * 20; // 5
     } else // asphalt/crosswalk
     {
         if (1.6 <= scale && scale <= 2)
-            weightedScale = (scale - 1.6) * 25; // max: (2 - 1.6) * 25 = 10
-        else if (2 < scale && scale <= 2.4) weightedScale = (2.4 - scale) * 25; // 10
+            weightedScale = (scale - 1.6) * 12.5; // 5
+        else if (2 < scale && scale <= 2.4) weightedScale = (2.4 - scale) * 12.5; // 5
     }
     return weightedScale;
 }
@@ -143,8 +143,8 @@ int isSatisfyWidthConstraint(shared_ptr<Rib> preRib, shared_ptr<Rib> currentRib)
 
     if (preRib->getGroup()) // red<<asphat<<blue
     {
-        // y=7x/11+10/11
-        minWidth = preRib->getVertebra()->getY() * 7 / 11 + 10 / 11;
+        // y=7x/13-10
+        minWidth = preRib->getVertebra()->getY() * 7 / 13 - 10;
         // y=4x/7+80
         maxWidth = preRib->getVertebra()->getY() * 4 / 7 + 80;
         if (minWidth <= 20) minWidth = 20;
@@ -153,8 +153,8 @@ int isSatisfyWidthConstraint(shared_ptr<Rib> preRib, shared_ptr<Rib> currentRib)
         if (dist < minWidth) return 0;
     } else // blue<<crosswalk<<red
     {
-        // y=1x/2-10
-        minWidth = preRib->getVertebra()->getY() / 2 - 10;
+        // y=1x/2-12
+        minWidth = preRib->getVertebra()->getY() / 2 - 12;
         // y=8x/15+60
         maxWidth = preRib->getVertebra()->getY() * 8 / 15 + 60;
         if (minWidth <= 10) minWidth = 10;

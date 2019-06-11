@@ -28,8 +28,8 @@ public class DemoVideoActivity extends AppCompatActivity implements View.OnClick
 
     private static final String TAG = "mytag-DemoVideoActivity";
     private ImageView mImgFramePreview;
-    private TextView mTxtIntro;
-    private View mViewLeftFrame, mViewRightFrame;
+    private TextView mTxtIntro, mTxtFrameIndex;
+    private View mViewLeftFrame, mViewRightFrame, mOverlay;
     private ArrayList<File> mFileList = new ArrayList<>();
     private int mCurrentFrame = 0;
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
@@ -65,6 +65,8 @@ public class DemoVideoActivity extends AppCompatActivity implements View.OnClick
         mViewRightFrame.setOnClickListener(this);
 
         mImgFramePreview = findViewById(R.id.image_view_frame);
+        mOverlay = findViewById(R.id.view_overlay_video);
+        mTxtFrameIndex = findViewById(R.id.text_view_frame_index);
 
         File root = new File(Environment.getExternalStorageDirectory().getPath() + "/gr/");
         getFile(root);
@@ -101,8 +103,8 @@ public class DemoVideoActivity extends AppCompatActivity implements View.OnClick
     Bitmap processFrame() {
         Mat matRgb = new Mat();
         Mat matGray = new Mat();
-        String stringFile = mFileList.get(mCurrentFrame).getName();
-        Log.d(TAG, "getFile: " + stringFile);
+        String stringFileName = mFileList.get(mCurrentFrame).getName();
+        Log.d(TAG, "getFile: " + stringFileName);
 
         Bitmap bitmapRbg = BitmapFactory.decodeFile(mFileList.get(mCurrentFrame).getAbsolutePath());
         Utils.bitmapToMat(bitmapRbg, matRgb);
@@ -110,6 +112,7 @@ public class DemoVideoActivity extends AppCompatActivity implements View.OnClick
 
         Imgproc.cvtColor(matRgb, matGray, Imgproc.COLOR_RGB2GRAY);
 
+        mTxtFrameIndex.setText(stringFileName.substring(stringFileName.length() - 7, stringFileName.length() - 4));
 
         int[] result = detectCrosswalk(matGray.getNativeObjAddr());
         matGray.release();
@@ -132,12 +135,13 @@ public class DemoVideoActivity extends AppCompatActivity implements View.OnClick
             Imgproc.line(matRgb, pt1, pt2, new Scalar(0, 0, 255), 8);
         }
         if (result[2] == 1) { // draw valid line
+            mOverlay.setVisibility(View.VISIBLE);
             for (int i = result[0] - 3 * 4; i < result[0]; i += 4) {
                 Point pt1 = new Point(result[i], result[i + 1]);
                 Point pt2 = new Point(result[i + 2], result[i + 3]);
                 Imgproc.line(matRgb, pt1, pt2, new Scalar(255, 0, 0), 8);
             }
-        }
+        } else mOverlay.setVisibility(View.GONE);
 
         Mat matRgbPortrait = new Mat(matRgb.cols(), matRgb.rows(), CvType.CV_8UC3);
         Core.rotate(matRgb, matRgbPortrait, Core.ROTATE_90_CLOCKWISE);

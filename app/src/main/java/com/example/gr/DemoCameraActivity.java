@@ -3,6 +3,7 @@ package com.example.gr;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.view.WindowManager;
 
 import org.opencv.android.BaseLoaderCallback;
@@ -19,6 +20,7 @@ public class DemoCameraActivity extends AppCompatActivity implements CameraBridg
     private static final String TAG = "MYTAG-ImageProcessAct";
 
     private Mat mGray, mRgba;
+    private View mOverlay;
 
     private CameraBridgeViewBase mOpenCvCameraView;
 
@@ -55,6 +57,8 @@ public class DemoCameraActivity extends AppCompatActivity implements CameraBridg
         mOpenCvCameraView = findViewById(R.id.java_camera_surface_view);
         mOpenCvCameraView.setVisibility(CameraBridgeViewBase.VISIBLE);
         mOpenCvCameraView.setCvCameraViewListener(this);
+
+        mOverlay = findViewById(R.id.view_overlay_camera);
     }
 
 
@@ -95,8 +99,14 @@ public class DemoCameraActivity extends AppCompatActivity implements CameraBridg
         mRgba.release();
     }
 
+    long pre_time_ms = -1;
+    long abc_count = 0;
+    long sum_time_ms;
+    long max_time_ms;
+
     @Override
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
+        Log.d(TAG, "onCameraFrame: ");
         mGray = inputFrame.gray();
         mRgba = inputFrame.rgba();
         int[] result = detectCrosswalk(mGray.getNativeObjAddr());
@@ -111,11 +121,41 @@ public class DemoCameraActivity extends AppCompatActivity implements CameraBridg
                     ", \nresult[5]: " + result[5] +
                     ", \nresult[6]: " + result[6]);
         }
-        Log.d(TAG, "onCameraFrame: width: " + mGray.width() + ", height: " + mGray.height() + "\n.\n.\n");
+        Log.d(TAG, "onCameraFrame: width: " + mGray.width() + ", height: " + mGray.height() + "\n");
+        if (pre_time_ms != -1) {
+            sum_time_ms += (System.currentTimeMillis() - pre_time_ms);
+            abc_count++;
+            if (max_time_ms < (System.currentTimeMillis() - pre_time_ms))
+                max_time_ms = (System.currentTimeMillis() - pre_time_ms);
+            Log.d(TAG, "max_time_ms: " + max_time_ms + "\n");
+            Log.d(TAG, "sum_time_ms: " + ((float) sum_time_ms / abc_count) + "\n.\n.\n");
+        }
+        pre_time_ms = System.currentTimeMillis();
+
         for (int i = result[1]; i < result[0]; i += 4) {
             Point pt1 = new Point(result[i], result[i + 1]);
             Point pt2 = new Point(result[i + 2], result[i + 3]);
             Imgproc.line(mRgba, pt1, pt2, new Scalar(0, 0, 255), 3);
+        }
+        if (result[2] == 1) { // draw valid line
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mOverlay.setVisibility(View.VISIBLE);
+                }
+            });
+            for (int i = result[0] - 3 * 4; i < result[0]; i += 4) {
+                Point pt1 = new Point(result[i], result[i + 1]);
+                Point pt2 = new Point(result[i + 2], result[i + 3]);
+                Imgproc.line(mRgba, pt1, pt2, new Scalar(255, 0, 0), 8);
+            }
+        } else {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mOverlay.setVisibility(View.GONE);
+                }
+            });
         }
         return mRgba;
     }
