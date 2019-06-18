@@ -1,5 +1,6 @@
 package com.example.gr;
 
+import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -8,6 +9,7 @@ import android.view.WindowManager;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
+import org.opencv.android.JavaCameraView;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
 import org.opencv.core.CvType;
@@ -15,6 +17,8 @@ import org.opencv.core.Mat;
 import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
+
+import java.util.List;
 
 public class DemoCameraActivity extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2 {
     private static final String TAG = "MYTAG-ImageProcessAct";
@@ -57,6 +61,7 @@ public class DemoCameraActivity extends AppCompatActivity implements CameraBridg
         mOpenCvCameraView = findViewById(R.id.java_camera_surface_view);
         mOpenCvCameraView.setVisibility(CameraBridgeViewBase.VISIBLE);
         mOpenCvCameraView.setCvCameraViewListener(this);
+        mOpenCvCameraView.setMaxFrameSize(320, 240);
 
         mOverlay = findViewById(R.id.view_overlay_camera);
     }
@@ -104,6 +109,23 @@ public class DemoCameraActivity extends AppCompatActivity implements CameraBridg
     long sum_time_ms;
     long max_time_ms;
 
+    boolean isSetMinResolution = false;
+    void setMinResolution() {
+        List<Camera.Size> mListResolution = ((JavaCameraView) mOpenCvCameraView).getResolutionList();
+        if (mListResolution == null) {
+            Log.d(TAG, "setMinResolution: mListResolution NULL");
+        }
+        else {
+            for (Camera.Size s: mListResolution) {
+                Log.d(TAG, "setMinResolution: height " + s.height + ", width: " + s.width);
+                if (s.width == 320) {
+                    ((JavaCameraView) mOpenCvCameraView).setResolution(s);
+                    break;
+                }
+            }
+        }
+    }
+
     @Override
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
         Log.d(TAG, "onCameraFrame: ");
@@ -132,11 +154,11 @@ public class DemoCameraActivity extends AppCompatActivity implements CameraBridg
         }
         pre_time_ms = System.currentTimeMillis();
 
-        for (int i = result[1]; i < result[0]; i += 4) {
-            Point pt1 = new Point(result[i], result[i + 1]);
-            Point pt2 = new Point(result[i + 2], result[i + 3]);
-            Imgproc.line(mRgba, pt1, pt2, new Scalar(0, 0, 255), 3);
-        }
+//        for (int i = result[1]; i < result[0]; i += 4) {
+//            Point pt1 = new Point(result[i], result[i + 1]);
+//            Point pt2 = new Point(result[i + 2], result[i + 3]);
+//            Imgproc.line(mRgba, pt1, pt2, new Scalar(0, 0, 255), 3);
+//        }
         if (result[2] == 1) { // draw valid line
             runOnUiThread(new Runnable() {
                 @Override
@@ -144,11 +166,11 @@ public class DemoCameraActivity extends AppCompatActivity implements CameraBridg
                     mOverlay.setVisibility(View.VISIBLE);
                 }
             });
-            for (int i = result[0] - 3 * 4; i < result[0]; i += 4) {
-                Point pt1 = new Point(result[i], result[i + 1]);
-                Point pt2 = new Point(result[i + 2], result[i + 3]);
-                Imgproc.line(mRgba, pt1, pt2, new Scalar(255, 0, 0), 8);
-            }
+//            for (int i = result[0] - 3 * 4; i < result[0]; i += 4) {
+//                Point pt1 = new Point(result[i], result[i + 1]);
+//                Point pt2 = new Point(result[i + 2], result[i + 3]);
+//                Imgproc.line(mRgba, pt1, pt2, new Scalar(255, 0, 0), 8);
+//            }
         } else {
             runOnUiThread(new Runnable() {
                 @Override

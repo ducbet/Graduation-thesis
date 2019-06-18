@@ -43,6 +43,36 @@ public class JavaCameraView extends CameraBridgeViewBase implements PreviewCallb
     private SurfaceTexture mSurfaceTexture;
     private int mPreviewFormat = ImageFormat.NV21;
 
+    // custom
+    public List<String> getEffectList() {
+        return mCamera.getParameters().getSupportedColorEffects();
+    }
+
+    public boolean isEffectSupported() {
+        return (mCamera.getParameters().getColorEffect() != null);
+    }
+
+    public String getEffect() {
+        return mCamera.getParameters().getColorEffect();
+    }
+
+    public List<Camera.Size> getResolutionList() {
+        return mCamera.getParameters().getSupportedPreviewSizes();
+    }
+
+    public void setResolution(Camera.Size resolution) {
+        disconnectCamera();
+        mMaxHeight = resolution.height;
+        mMaxWidth = resolution.width;
+        connectCamera(getWidth(), getHeight());
+    }
+
+    public Camera.Size getResolution() {
+        return mCamera.getParameters().getPreviewSize();
+    }
+
+    //
+
     public static class JavaCameraSizeAccessor implements ListItemAccessor {
 
         @Override
