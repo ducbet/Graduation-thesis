@@ -1,0 +1,49 @@
+[
+{
+  "directory": "/home/tmd/Desktop/workspace/android/gr/app/.cxx/cmake/release/arm64-v8a",
+  "command": "/home/tmd/Android/Sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=aarch64-none-linux-android21 --gcc-toolchain=/home/tmd/Android/Sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/tmd/Android/Sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Dnative_lib_EXPORTS -I/home/tmd/Downloads/OpenCV-android-sdk/sdk/native/jni/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++11 -std=gnu++11 -O2 -DNDEBUG  -fPIC   -o CMakeFiles/native-lib.dir/ED.cpp.o -c /home/tmd/Desktop/workspace/android/gr/app/src/main/cpp/ED.cpp",
+  "file": "/home/tmd/Desktop/workspace/android/gr/app/src/main/cpp/ED.cpp"
+},
+
+{
+  "directory": "/home/tmd/Desktop/workspace/android/gr/app/.cxx/cmake/release/arm64-v8a",
+  "command": "/home/tmd/Android/Sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=aarch64-none-linux-android21 --gcc-toolchain=/home/tmd/Android/Sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/tmd/Android/Sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Dnative_lib_EXPORTS -I/home/tmd/Downloads/OpenCV-android-sdk/sdk/native/jni/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++11 -std=gnu++11 -O2 -DNDEBUG  -fPIC   -o CMakeFiles/native-lib.dir/EDColor.cpp.o -c /home/tmd/Desktop/workspace/android/gr/app/src/main/cpp/EDColor.cpp",
+  "file": "/home/tmd/Desktop/workspace/android/gr/app/src/main/cpp/EDColor.cpp"
+},
+
+{
+  "directory": "/home/tmd/Desktop/workspace/android/gr/app/.cxx/cmake/release/arm64-v8a",
+  "command": "/home/tmd/Android/Sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=aarch64-none-linux-android21 --gcc-toolchain=/home/tmd/Android/Sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/tmd/Android/Sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Dnative_lib_EXPORTS -I/home/tmd/Downloads/OpenCV-android-sdk/sdk/native/jni/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++11 -std=gnu++11 -O2 -DNDEBUG  -fPIC   -o CMakeFiles/native-lib.dir/EDLines.cpp.o -c /home/tmd/Desktop/workspace/android/gr/app/src/main/cpp/EDLines.cpp",
+  "file": "/home/tmd/Desktop/workspace/android/gr/app/src/main/cpp/EDLines.cpp"
+},
+
+{
+  "directory": "/home/tmd/Desktop/workspace/android/gr/app/.cxx/cmake/release/arm64-v8a",
+  "command": "/home/tmd/Android/Sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=aarch64-none-linux-android21 --gcc-toolchain=/home/tmd/Android/Sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/tmd/Android/Sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Dnative_lib_EXPORTS -I/home/tmd/Downloads/OpenCV-android-sdk/sdk/native/jni/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++11 -std=gnu++11 -O2 -DNDEBUG  -fPIC   -o CMakeFiles/native-lib.dir/NFA.cpp.o -c /home/tmd/Desktop/workspace/android/gr/app/src/main/cpp/NFA.cpp",
+  "file": "/home/tmd/Desktop/workspace/android/gr/app/src/main/cpp/NFA.cpp"
+},
+
+{
+  "directory": "/home/tmd/Desktop/workspace/android/gr/app/.cxx/cmake/release/arm64-v8a",
+  "command": "/home/tmd/Android/Sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=aarch64-none-linux-android21 --gcc-toolchain=/home/tmd/Android/Sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/tmd/Android/Sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Dnative_lib_EXPORTS -I/home/tmd/Downloads/OpenCV-android-sdk/sdk/native/jni/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++11 -std=gnu++11 -O2 -DNDEBUG  -fPIC   -o CMakeFiles/native-lib.dir/classify.cpp.o -c /home/tmd/Desktop/workspace/android/gr/app/src/main/cpp/classify.cpp",
+  "file": "/home/tmd/Desktop/workspace/android/gr/app/src/main/cpp/classify.cpp"
+},
+
+{
+  "directory": "/home/tmd/Desktop/workspace/android/gr/app/.cxx/cmake/release/arm64-v8a",
+  "command": "/home/tmd/Android/Sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=aarch64-none-linux-android21 --gcc-toolchain=/home/tmd/Android/Sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/tmd/Android/Sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Dnative_lib_EXPORTS -I/home/tmd/Downloads/OpenCV-android-sdk/sdk/native/jni/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++11 -std=gnu++11 -O2 -DNDEBUG  -fPIC   -o CMakeFiles/native-lib.dir/line_n_point.cpp.o -c /home/tmd/Desktop/workspace/android/gr/app/src/main/cpp/line_n_point.cpp",
+  "file": "/home/tmd/Desktop/workspace/android/gr/app/src/main/cpp/line_n_point.cpp"
+},
+
+{
+  "directory": "/home/tmd/Desktop/workspace/android/gr/app/.cxx/cmake/release/arm64-v8a",
+  "command": "/home/tmd/Android/Sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=aarch64-none-linux-android21 --gcc-toolchain=/home/tmd/Android/Sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/tmd/Android/Sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Dnative_lib_EXPORTS -I/home/tmd/Downloads/OpenCV-android-sdk/sdk/native/jni/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++11 -std=gnu++11 -O2 -DNDEBUG  -fPIC   -o CMakeFiles/native-lib.dir/native-lib.cpp.o -c /home/tmd/Desktop/workspace/android/gr/app/src/main/cpp/native-lib.cpp",
+  "file": "/home/tmd/Desktop/workspace/android/gr/app/src/main/cpp/native-lib.cpp"
+},
+
+{
+  "directory": "/home/tmd/Desktop/workspace/android/gr/app/.cxx/cmake/release/arm64-v8a",
+  "command": "/home/tmd/Android/Sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=aarch64-none-linux-android21 --gcc-toolchain=/home/tmd/Android/Sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/tmd/Android/Sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Dnative_lib_EXPORTS -I/home/tmd/Downloads/OpenCV-android-sdk/sdk/native/jni/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++11 -std=gnu++11 -O2 -DNDEBUG  -fPIC   -o CMakeFiles/native-lib.dir/process_line.cpp.o -c /home/tmd/Desktop/workspace/android/gr/app/src/main/cpp/process_line.cpp",
+  "file": "/home/tmd/Desktop/workspace/android/gr/app/src/main/cpp/process_line.cpp"
+}
+]

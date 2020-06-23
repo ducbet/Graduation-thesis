@@ -1,0 +1,10 @@
+# ninja log v5
+0	256	1592697633	CMakeFiles/native-lib.dir/NFA.cpp.o	9f2dd41ac60fd03a
+1	4200	1592697636	CMakeFiles/native-lib.dir/line_n_point.cpp.o	6d03055e541e39ed
+1	5131	1592697637	CMakeFiles/native-lib.dir/EDColor.cpp.o	42f4a3572ebbc84e
+1	5831	1592697638	CMakeFiles/native-lib.dir/EDLines.cpp.o	2beda61d28043e8c
+0	6073	1592697638	CMakeFiles/native-lib.dir/ED.cpp.o	73c7e9e290685a10
+1	6237	1592697639	CMakeFiles/native-lib.dir/classify.cpp.o	3b699211117f8b1d
+256	6244	1592697639	CMakeFiles/native-lib.dir/native-lib.cpp.o	7d230424d5f84d
+4201	7748	1592697640	CMakeFiles/native-lib.dir/process_line.cpp.o	741955c285c30bc6
+7748	8325	1592697641	/home/tmd/Desktop/workspace/android/gr/app/build/intermediates/cmake/debug/obj/x86_64/libnative-lib.so	7e04a54fc7416194

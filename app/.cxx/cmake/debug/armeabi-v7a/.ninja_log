@@ -1,0 +1,10 @@
+# ninja log v5
+0	592	1592697616	CMakeFiles/native-lib.dir/NFA.cpp.o	7fe070889e77feaa
+15	4844	1592697620	CMakeFiles/native-lib.dir/line_n_point.cpp.o	42d70793ae85c3c6
+592	6185	1592697621	CMakeFiles/native-lib.dir/native-lib.cpp.o	c69c1a9f77ec50cf
+7	6193	1592697621	CMakeFiles/native-lib.dir/EDLines.cpp.o	8c4db2e4e113ec4d
+7	6651	1592697622	CMakeFiles/native-lib.dir/EDColor.cpp.o	9fac7e711f9768bb
+0	6662	1592697622	CMakeFiles/native-lib.dir/ED.cpp.o	6a02fc6470c55d82
+11	6987	1592697622	CMakeFiles/native-lib.dir/classify.cpp.o	54bfc21e1ebcf61
+4844	8385	1592697623	CMakeFiles/native-lib.dir/process_line.cpp.o	ef5cef1e1e5133c8
+8385	8957	1592697624	/home/tmd/Desktop/workspace/android/gr/app/build/intermediates/cmake/debug/obj/armeabi-v7a/libnative-lib.so	16047b79ec19c416

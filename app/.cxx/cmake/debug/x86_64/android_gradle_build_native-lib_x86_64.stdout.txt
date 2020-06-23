@@ -1,0 +1,10 @@
+ninja: Entering directory `/home/tmd/Desktop/workspace/android/gr/app/.cxx/cmake/debug/x86_64'
+[1/9] Building CXX object CMakeFiles/native-lib.dir/NFA.cpp.o
+[2/9] Building CXX object CMakeFiles/native-lib.dir/line_n_point.cpp.o
+[3/9] Building CXX object CMakeFiles/native-lib.dir/EDColor.cpp.o
+[4/9] Building CXX object CMakeFiles/native-lib.dir/EDLines.cpp.o
+[5/9] Building CXX object CMakeFiles/native-lib.dir/ED.cpp.o
+[6/9] Building CXX object CMakeFiles/native-lib.dir/classify.cpp.o
+[7/9] Building CXX object CMakeFiles/native-lib.dir/native-lib.cpp.o
+[8/9] Building CXX object CMakeFiles/native-lib.dir/process_line.cpp.o
+[9/9] Linking CXX shared library /home/tmd/Desktop/workspace/android/gr/app/build/intermediates/cmake/debug/obj/x86_64/libnative-lib.so
