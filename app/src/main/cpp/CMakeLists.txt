@@ -1,6 +1,6 @@
-set(pathToProject /home/tmd/Desktop/workspace/gr)
+set(pathToProject /home/tmd/Desktop/workspace/android/gr)
 # https://medium.com/@kashafahmed/a-proper-beginners-guide-to-installing-opencv-android-in-android-studio-updated-5fe7f3399e1c
-set(pathToOpenCv /home/tmd/Downloads/OpenCV-android-sdk)
+set(pathToOpenCv /home/tmd/Desktop/workspace/android/OpenCV-android-sdk)
 cmake_minimum_required(VERSION 3.4.1) # opencv-3.4.3-android-sdk
 
 set(CMAKE_VERBOSE_MAKEFILE on)

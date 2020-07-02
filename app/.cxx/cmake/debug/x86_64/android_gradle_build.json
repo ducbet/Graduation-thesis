@@ -1,0 +1,115 @@
+{
+  "stringTable": {
+    "0": "/home/tmd/Desktop/workspace/android/gr/app/.cxx/cmake/debug/x86_64",
+    "1": "--target=x86_64-none-linux-android21 --gcc-toolchain=/home/tmd/Android/Sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/tmd/Android/Sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/sysroot -Dnative_lib_EXPORTS -I/home/tmd/Downloads/OpenCV-android-sdk/sdk/native/jni/include -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -std=c++11 -std=gnu++11 -O0 -fno-limit-debug-info -fPIC"
+  },
+  "buildFiles": [
+    "/home/tmd/Android/Sdk/ndk/21.0.6113669/build/cmake/platforms.cmake",
+    "/home/tmd/Android/Sdk/ndk/21.0.6113669/build/cmake/android.toolchain.cmake",
+    "/home/tmd/Desktop/workspace/android/gr/app/src/main/cpp/CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "/home/tmd/Android/Sdk/cmake/3.10.2.4988404/bin/ninja -C \"/home/tmd/Desktop/workspace/android/gr/app/.cxx/cmake/debug/x86_64\" clean"
+  ],
+  "buildTargetsCommand": "/home/tmd/Android/Sdk/cmake/3.10.2.4988404/bin/ninja  -C \"/home/tmd/Desktop/workspace/android/gr/app/.cxx/cmake/debug/x86_64\" {LIST_OF_TARGETS_TO_BUILD}",
+  "libraries": {
+    "native-lib-Debug-x86_64": {
+      "buildCommand": "/home/tmd/Android/Sdk/cmake/3.10.2.4988404/bin/ninja -C \"/home/tmd/Desktop/workspace/android/gr/app/.cxx/cmake/debug/x86_64\" native-lib",
+      "buildType": "debug",
+      "toolchain": "1505436785",
+      "abi": "x86_64",
+      "artifactName": "native-lib",
+      "files": [
+        {
+          "src": "/home/tmd/Desktop/workspace/android/gr/app/src/main/cpp/ED.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "/home/tmd/Desktop/workspace/android/gr/app/src/main/cpp/EDColor.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "/home/tmd/Desktop/workspace/android/gr/app/src/main/cpp/EDLines.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "/home/tmd/Desktop/workspace/android/gr/app/src/main/cpp/NFA.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "/home/tmd/Desktop/workspace/android/gr/app/src/main/cpp/classify.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "/home/tmd/Desktop/workspace/android/gr/app/src/main/cpp/line_n_point.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "/home/tmd/Desktop/workspace/android/gr/app/src/main/cpp/native-lib.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "/home/tmd/Desktop/workspace/android/gr/app/src/main/cpp/process_line.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        }
+      ],
+      "headers": [
+        {
+          "header": "/home/tmd/Desktop/workspace/android/gr/app/src/main/cpp/ED.h",
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "header": "/home/tmd/Desktop/workspace/android/gr/app/src/main/cpp/EDColor.h",
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "header": "/home/tmd/Desktop/workspace/android/gr/app/src/main/cpp/EDLib.h",
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "header": "/home/tmd/Desktop/workspace/android/gr/app/src/main/cpp/EDLines.h",
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "header": "/home/tmd/Desktop/workspace/android/gr/app/src/main/cpp/NFA.h",
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "header": "/home/tmd/Desktop/workspace/android/gr/app/src/main/cpp/classify.h",
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "header": "/home/tmd/Desktop/workspace/android/gr/app/src/main/cpp/line_n_point.h",
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "header": "/home/tmd/Desktop/workspace/android/gr/app/src/main/cpp/native-lib.h",
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "header": "/home/tmd/Desktop/workspace/android/gr/app/src/main/cpp/process_line.h",
+          "workingDirectoryOrdinal": 0
+        }
+      ],
+      "output": "/home/tmd/Desktop/workspace/android/gr/app/build/intermediates/cmake/debug/obj/x86_64/libnative-lib.so",
+      "runtimeFiles": []
+    }
+  },
+  "toolchains": {
+    "1505436785": {
+      "cppCompilerExecutable": "/home/tmd/Android/Sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++"
+    }
+  },
+  "cFileExtensions": [],
+  "cppFileExtensions": [
+    "cpp"
+  ]
+}
