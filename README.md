@@ -4,7 +4,7 @@
 ![Graduation-thesis.gif](./app/src/main/gr.gif)
 
 ## Introduce
-Use a smartphone while walking is very dangerous, especially when crossing the street. So that I proposed this thesis to recognize and alert if the user uses a smartphone while crossing. The final app will run in the background and does not affect the user in normal circumstances. It only put alert when the user uses a smartphone while crossing. 
+Use a smartphone while walking is very dangerous, especially when crossing the street. So that I proposed this thesis to recognize and alert if the user uses a smartphone while crossing. My idea is to use a back camera of the phone to record video. If zebra crossing appear in the video, the application will send alert to the user. The final app will run in the background and does not affect the user in normal circumstances. It only put alert when the user uses a smartphone while crossing. 
 This repo is an application that demos the Zebra detection module. The point of view when the user uses a smartphone will be processed and display to the screen. If a crosswalk is detected, the screen will be changed to red
 
 The image describes how the user holds the phone while walking
