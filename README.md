@@ -8,6 +8,7 @@ Use a smartphone while walking is very dangerous, especially when crossing the s
 This repo is an application that demos the Zebra detection module. The point of view when the user uses a smartphone will be processed and display to the screen. If a crosswalk is detected, the screen will be changed to red
 
 The image describes how the user holds the phone while walking
+<br/>
 ![ZebraRecognizer: Efficient and Precise Localization of Pedestrian Crossings](./app/src/main/pointOfView.png)
 
 Some image to decribe the taken images when user uses smartphone while walking
@@ -37,5 +38,5 @@ Some image to decribe the taken images when user uses smartphone while walking
 - Demo zebra detection module with the camera as input
 ## Usage (Optional)
 - If you choose "DEMO BY CAMERA", you should go outside and test with real zebra crosswalk.
-- If you choose "DEMO BY SAVED VIDEO", you must prepare splited images and put in your phone's external storages with path ./gr
+- If you choose "DEMO BY SAVED VIDEO", you must prepare splited images and put in "./gr" of your phone's external storages
 <img src="./app/src/main/gr_path.png" width="300" >
