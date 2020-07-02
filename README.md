@@ -11,10 +11,10 @@ The image describes how the user holds the phone while walking
 ![ZebraRecognizer: Efficient and Precise Localization of Pedestrian Crossings](./app/src/main/pointOfView.png)
 
 Some image to decribe the taken images when user uses smartphone while walking
+<br/>
 ![sample1](./app/src/main/sample1.png)
 ![sample2](./app/src/main/sample2.png)
 ![sample3](./app/src/main/sample3.png)
-
 ## Installation
 > This application was tested with Xiaomi Mi 4c (Android 5.1.1)
 > You may need to install OpenCV for Android to build from source code. See more: https://medium.com/@kashafahmed/a-proper-beginners-guide-to-installing-opencv-android-in-android-studio-updated-5fe7f3399e1c
@@ -37,5 +37,5 @@ Some image to decribe the taken images when user uses smartphone while walking
 - Demo zebra detection module with the camera as input
 ## Usage (Optional)
 - If you choose "DEMO BY CAMERA", you should go outside and test with real zebra crosswalk.
-- If you choose "DEMO BY SAVED VIDEO", you must prepare splited images and put in your phone's external storages with path "./gr"
-![gr_path.png](./app/src/main/gr_path.png)
+- If you choose "DEMO BY SAVED VIDEO", you must prepare splited images and put in your phone's external storages with path ./gr
+<img src="./app/src/main/gr_path.png" width="300" >
