@@ -38,5 +38,5 @@ Some image to decribe the taken images when user uses smartphone while walking
 - Demo zebra detection module with the camera as input
 ## Usage (Optional)
 - If you choose "DEMO BY CAMERA", you should go outside and test with real zebra crosswalk.
-- If you choose "DEMO BY SAVED VIDEO", you must prepare splited images and put in "./gr" of your phone's external storages
+- If you choose "DEMO BY SAVED VIDEO", you must prepare splited images and put in folder "./gr" of your phone's external storages
 <img src="./app/src/main/gr_path.png" width="300" >
